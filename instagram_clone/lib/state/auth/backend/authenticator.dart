@@ -9,11 +9,14 @@ import '../constants/constants.dart';
 import '../models/auth_result.dart';
 
 class Authenticator {
-  User? currentUser = FirebaseAuth.instance.currentUser;
-  UserId? get userId => currentUser?.uid;
+  const Authenticator();
+
+  // User? currentUser = FirebaseAuth.instance.currentUser;
+  UserId? get userId => FirebaseAuth.instance.currentUser?.uid;
   bool get isAlreadyLoggedIn => userId != null;
-  String get displayName => currentUser?.displayName ?? '';
-  String? get email => currentUser?.email ?? '';
+  String get displayName =>
+      FirebaseAuth.instance.currentUser?.displayName ?? '';
+  String? get email => FirebaseAuth.instance.currentUser?.email ?? '';
 
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
@@ -72,6 +75,7 @@ class Authenticator {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+
     try {
       final UserCredential uc =
           await FirebaseAuth.instance.signInWithCredential(oauthCredential);
