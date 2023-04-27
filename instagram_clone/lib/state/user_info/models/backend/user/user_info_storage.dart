@@ -38,7 +38,7 @@ class UserInfoStorage {
         displayName: displayName,
         email: email,
       );
-      FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection(
             FirebaseCollectionName.users,
           )
