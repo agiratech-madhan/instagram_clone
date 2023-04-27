@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "749117444020",
+    "project_id": "instagram-clone-mad-han",
+    "storage_bucket": "instagram-clone-mad-han.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749117444020:android:b6369070ef79d640ce6ce1",
+        "android_client_info": {
+          "package_name": "com.example.instagram_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749117444020-bcaf7rr6hn88idd4efi0q2qc0iffkp0e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3jHvxziJDRtHaYi6URt9pb-1jKya1Eqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749117444020-bcaf7rr6hn88idd4efi0q2qc0iffkp0e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
