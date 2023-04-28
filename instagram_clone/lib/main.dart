@@ -3,6 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone/state/auth/backend/authenticator.dart';
 import 'package:instagram_clone/state/auth/provider/auth_state_provider.dart';
 import 'package:instagram_clone/state/auth/provider/is_logged_in_provider.dart';
+import 'package:instagram_clone/state/provider/is_loading_provider.dart';
+import 'package:instagram_clone/view/components/loading/loading_screen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:developer' as devtools show log;
@@ -36,6 +38,13 @@ class MyApp extends StatelessWidget {
           indicatorColor: Colors.blueGrey),
       themeMode: ThemeMode.dark,
       home: Consumer(builder: (context, ref, child) {
+        ref.listen(isLoadingProvider, (_, isLoading) {
+          if (isLoading) {
+            return LoadingScreen.instance().show(context: context);
+          } else {
+            return LoadingScreen.instance().hide();
+          }
+        });
         final isLoggedIn = ref.watch(isLoggedInProvider);
         if (isLoggedIn) {
           return const MainView();
@@ -59,9 +68,11 @@ class MainView extends StatelessWidget {
         title: Text("Main View"),
         centerTitle: true,
       ),
-      body: Consumer(builder: ((context, ref, child) {
+      body: Consumer(builder: ((_, ref, child) {
         return TextButton(
           onPressed: () async {
+            // LoadingScreen.instance().show(context: context, text: 'Loading...');
+
             ref.read(authStateProvier.notifier).logout();
           },
           child: Text(
