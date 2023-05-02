@@ -8,7 +8,7 @@ import 'package:instagram_clone/state/user_info/models/user_info_payload.dart';
 @immutable
 class UserInfoStorage {
   const UserInfoStorage();
-  Future<bool> saveuserInfo({
+  Future<bool> saveUserInfo({
     required UserId userId,
     required String displayName,
     required String? email,
@@ -33,6 +33,7 @@ class UserInfoStorage {
         );
         return true;
       }
+
       final payload = UserInfoPayLoad(
         userId: userId,
         displayName: displayName,

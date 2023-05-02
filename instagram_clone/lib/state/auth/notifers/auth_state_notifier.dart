@@ -34,6 +34,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       isLoading: false,
       userId: userId,
     );
+    // state = state.copyWithIsLoading(false);
   }
 
   Future<void> loginwithFacebook() async {
@@ -50,8 +51,8 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     );
   }
 
-  Future<void> saveUserInfo({required UserId userId}) async {
-    _userInfoStorage.saveuserInfo(
+  Future<void> saveUserInfo({required UserId userId}) {
+    return _userInfoStorage.saveUserInfo(
       userId: userId,
       displayName: _authenticator.displayName,
       email: _authenticator.email,
