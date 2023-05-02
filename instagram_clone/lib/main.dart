@@ -4,6 +4,9 @@ import 'package:instagram_clone/state/auth/backend/authenticator.dart';
 import 'package:instagram_clone/state/auth/provider/auth_state_provider.dart';
 import 'package:instagram_clone/state/auth/provider/is_logged_in_provider.dart';
 import 'package:instagram_clone/state/provider/is_loading_provider.dart';
+import 'package:instagram_clone/view/components/animations/data_not_found_animation_view.dart';
+import 'package:instagram_clone/view/components/animations/empty_content_animation_view.dart';
+import 'package:instagram_clone/view/components/animations/empty_content_with_text_animation_view.dart';
 import 'package:instagram_clone/view/components/loading/loading_screen.dart';
 import 'package:instagram_clone/view/login/login_view.dart';
 import 'firebase_options.dart';
@@ -65,7 +68,11 @@ class MainView extends StatelessWidget {
         centerTitle: true,
       ),
       body: Consumer(builder: ((_, ref, child) {
-        return TextButton(
+        return
+            // EmptyContentWithTextAnimationView(
+            //   text: "Hello World",
+            // );
+            TextButton(
           onPressed: () async {
             // LoadingScreen.instance().show(context: context, text: 'Loading...');
 
