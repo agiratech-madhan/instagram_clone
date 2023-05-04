@@ -9,6 +9,7 @@ import 'package:instagram_clone/view/components/animations/empty_content_animati
 import 'package:instagram_clone/view/components/animations/empty_content_with_text_animation_view.dart';
 import 'package:instagram_clone/view/components/loading/loading_screen.dart';
 import 'package:instagram_clone/view/login/login_view.dart';
+import 'package:instagram_clone/view/main/main_view.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:developer' as devtools show log;
@@ -24,21 +25,32 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoggedIn = ref.watch(isLoggedInProvider);
+    // final isLoggedIn = ref.watch(isLoggedInProvider);
 
-    ref.listen(isLoadingProvider, (_, isLoading) {
-      if (isLoading) {
-        return LoadingScreen.instance().show(context: context);
-      } else {
-        return LoadingScreen.instance().hide();
-      }
-    });
-
+    // ref.listen(isLoadingProvider, (_, isLoading) {
+    //   if (isLoading) {
+    //     return LoadingScreen.instance().show(context: context);
+    //   } else {
+    //     return LoadingScreen.instance().hide();
+    //   }
+    // });
+    ref.listen<bool>(
+      isLoadingProvider,
+      (_, isLoading) {
+        if (isLoading) {
+          return LoadingScreen.instance().show(
+            context: context,
+          );
+        } else {
+          return LoadingScreen.instance().hide();
+        }
+      },
+    );
     return MaterialApp(
         title: 'Flutter De mo',
         theme: ThemeData(
@@ -51,65 +63,16 @@ class MyApp extends ConsumerWidget {
             primarySwatch: Colors.blueGrey,
             indicatorColor: Colors.blueGrey),
         themeMode: ThemeMode.dark,
-        home: isLoggedIn ? MainView() : LoginView());
+        home: HookConsumer(builder: ((__, ref, child) {
+          // return Text("data");
+          final isLoggedIn = ref.watch(isLoggedInProvider);
+          if (isLoggedIn) {
+            return const MainView();
+          } else {
+            return const LoginView();
+          }
+        })));
+
+    // isLoggedIn ? MainView() : LoginView());
   }
 }
-
-class MainView extends StatelessWidget {
-  const MainView({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Main View"),
-        centerTitle: true,
-      ),
-      body: Consumer(builder: ((_, ref, child) {
-        return
-            // EmptyContentWithTextAnimationView(
-            //   text: "Hello World",
-            // );
-            TextButton(
-          onPressed: () async {
-            // LoadingScreen.instance().show(context: context, text: 'Loading...');
-
-            ref.read(authStateProvier.notifier).logout();
-          },
-          child: Text(
-            "Logout",
-          ),
-        );
-      })),
-    );
-  }
-}
-
-// class LoginView extends ConsumerWidget {
-//   const LoginView({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Login View"),
-//       ),
-//       body: Column(
-//         children: [
-//           TextButton(
-//             onPressed: ref.read(authStateProvier.notifier).loginWithGoogle,
-//             child: const Text("Sign In With Google"),
-//           ),
-//           TextButton(
-//             onPressed: ref.read(authStateProvier.notifier).loginwithFacebook,
-//             child: const Text("Sign In With Facebook"),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

@@ -20,15 +20,15 @@ class UserInfoStorage {
           .collection(
             FirebaseCollectionName.users,
           )
-          .where(FireBaseFieldName.userId, isEqualTo: userId)
+          .where(FirebaseFieldName.userId, isEqualTo: userId)
           .limit(1)
           .get();
 
       if (userInfo.docs.isNotEmpty) {
         await userInfo.docs.first.reference.update(
           {
-            FireBaseFieldName.displayName: displayName,
-            FireBaseFieldName.email: email ?? '',
+            FirebaseFieldName.displayName: displayName,
+            FirebaseFieldName.email: email ?? '',
           },
         );
         return true;

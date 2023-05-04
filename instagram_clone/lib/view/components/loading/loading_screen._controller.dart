@@ -8,7 +8,7 @@ typedef UpdateLoadingscreen = bool Function(String text);
 class LoadingScreenController {
   final CloseLoadingScreen close;
   final UpdateLoadingscreen update;
-  LoadingScreenController({
+  const LoadingScreenController({
     required this.close,
     required this.update,
   });

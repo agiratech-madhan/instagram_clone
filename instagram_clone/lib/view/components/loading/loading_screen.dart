@@ -22,18 +22,19 @@ class LoadingScreen {
   }
 
   void hide() {
-    _controller?.close;
+    _controller?.close();
     _controller = null;
   }
 
   LoadingScreenController? showOverLay(
       {required BuildContext context, required String text}) {
+    final textController = StreamController<String>();
+    textController.add(text);
     final state = Overlay.of(context);
     if (state == null) {
       return null;
     }
-    final textController = StreamController<String>();
-    textController.add(text);
+
     final renderBox = context.findRenderObject() as RenderBox;
     final size = renderBox.size;
     final overlay = OverlayEntry(builder: (context) {
