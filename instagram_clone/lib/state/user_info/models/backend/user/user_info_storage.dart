@@ -13,8 +13,6 @@ class UserInfoStorage {
     required String displayName,
     required String? email,
   }) async {
-    ///checking user info from before
-
     try {
       final userInfo = await FirebaseFirestore.instance
           .collection(

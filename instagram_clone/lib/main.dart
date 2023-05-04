@@ -43,16 +43,17 @@ class MyApp extends HookConsumerWidget {
       isLoadingProvider,
       (_, isLoading) {
         if (isLoading) {
-          return LoadingScreen.instance().show(
-            context: context,
-          );
+          // return LoadingScreen.instance().show(
+          //   context: context,
+          // );
+          const CircularProgressIndicator();
         } else {
-          return LoadingScreen.instance().hide();
+          // return LoadingScreen.instance().hide();
         }
       },
     );
     return MaterialApp(
-        title: 'Flutter De mo',
+        // title: 'Flutter De mo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,

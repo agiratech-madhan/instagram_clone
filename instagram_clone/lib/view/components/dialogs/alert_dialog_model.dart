@@ -14,9 +14,9 @@ class AlertDialogModel<T> {
 }
 
 extension Present<T> on AlertDialogModel<T> {
-  Future<T?> present(BuildContext context) {
+  Future<T?> present(BuildContext ctx) {
     return showDialog<T?>(
-      context: context,
+      context: ctx,
       builder: (context) {
         return AlertDialog(
           title: Text(title),
@@ -28,7 +28,7 @@ extension Present<T> on AlertDialogModel<T> {
                   entry.key,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop(
+                  Navigator.of(ctx).pop(
                     entry.value,
                   );
                 },

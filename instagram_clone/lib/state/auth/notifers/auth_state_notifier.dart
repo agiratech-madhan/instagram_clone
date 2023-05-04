@@ -19,7 +19,6 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   Future<void> logOut() async {
     state = state.copyWithIsLoading(true);
     await _authenticator.logOut();
-
     state = const AuthState.unKnown();
   }
 
@@ -31,6 +30,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     if (result == AuthResult.success && userId != null) {
       await saveUserInfo(userId: userId);
     }
+    print("Auth Result $result");
     print(result == AuthResult.success && userId != null);
     state = AuthState(
       result: result,
@@ -54,6 +54,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> saveUserInfo({required UserId userId}) {
+    // final value =  await ;
     return _userInfoStorage.saveUserInfo(
       userId: userId,
       displayName: _authenticator.displayName,

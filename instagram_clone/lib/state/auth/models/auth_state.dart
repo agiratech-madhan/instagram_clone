@@ -4,7 +4,7 @@ import 'package:instagram_clone/state/auth/models/auth_result.dart';
 
 import '../../posts/typedefs/user_id.dart';
 
-@immutable
+// @immutable
 class AuthState {
   final AuthResult? result;
   final bool isLoading;
@@ -21,6 +21,8 @@ class AuthState {
 
   AuthState copyWithIsLoading(bool isLoadings) =>
       AuthState(isLoading: isLoadings, result: result, userId: userId);
+  AuthState copyWith(bool isLo, AuthResult? res, UserId? id) =>
+      AuthState(isLoading: isLo, result: res, userId: id);
 
   @override
   bool operator ==(covariant AuthState other) =>

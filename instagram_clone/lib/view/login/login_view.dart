@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:instagram_clone/state/auth/providers/auth_state_provider.dart';
 import 'package:instagram_clone/view/components/constants/strings.dart';
 import 'package:instagram_clone/view/login/divider_maegins.dart';
 import 'package:instagram_clone/view/login/login_view_sign_up_links.dart';
 
+import '../../state/auth/provider/auth_state_provider.dart';
 import '../../state/provider/is_loading_provider.dart';
 import '../components/loading/loading_screen.dart';
 import '../constants/app_color.dart';
@@ -17,9 +17,10 @@ class LoginView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(isLoadingProvider, (_, isLoading) {
       if (isLoading) {
-        return LoadingScreen.instance().show(context: context);
+        CircularProgressIndicator();
+        // LoadingScreen.instance().show(context: context);
       } else {
-        return LoadingScreen.instance().hide();
+        // return LoadingScreen.instance().hide();
       }
     });
     return Scaffold(

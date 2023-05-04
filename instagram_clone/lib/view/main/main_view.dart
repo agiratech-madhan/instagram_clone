@@ -2,44 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone/view/components/dialogs/alert_dialog_model.dart';
-
 import '../../state/auth/provider/auth_state_provider.dart';
-import '../../state/auth/providers/auth_state_provider.dart';
 import '../components/constants/strings.dart';
 import '../components/dialogs/logout_dialog.dart';
 import '../tabs/user_posts/user_posts_view.dart';
-
-// class MainView extends StatelessWidget {
-//   const MainView({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Main View"),
-//         centerTitle: true,
-//       ),
-//       body: Consumer(builder: ((_, ref, child) {
-//         return
-//             //  EmptyContentWithTextAnimationView(
-//             //   text: "Hello World",
-//             // );
-//             TextButton(
-//           onPressed: () async {
-//             // LoadingScreen.instance().show(context: context, text: 'Loading...');
-
-//             await ref.read(authStateProvier.notifier).logOut();
-//           },
-//           child: Text(
-//             "Logout",
-//           ),
-//         );
-//       })),
-//     );
-//   }
-// }
 
 class MainView extends StatefulHookConsumerWidget {
   const MainView({Key? key}) : super(key: key);
@@ -63,10 +29,10 @@ class _MainViewState extends ConsumerState<MainView> {
               icon: const FaIcon(
                 FontAwesomeIcons.film,
               ),
-              onPressed: () async {},
+              onPressed: () {},
             ),
             IconButton(
-              onPressed: () async {},
+              onPressed: () {},
               icon: const Icon(
                 Icons.add_photo_alternate_outlined,
               ),
@@ -77,7 +43,7 @@ class _MainViewState extends ConsumerState<MainView> {
                       (value) => value ?? false,
                     );
                 if (shouldLogOut) {
-                  await ref.read(authStateProvider.notifier).logOut();
+                  ref.read(authStateProvider.notifier).logOut();
                 }
               },
               icon: const Icon(
@@ -105,7 +71,7 @@ class _MainViewState extends ConsumerState<MainView> {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             UserPostsView(),
             UserPostsView(),
@@ -118,15 +84,3 @@ class _MainViewState extends ConsumerState<MainView> {
     );
   }
 }
-// class  extends StatefulHookConsumerWidget {
-//   const ({super.key});
-
-//   @override
-//   ConsumerState<ConsumerStatefulWidget> createState() => _State();
-// }
-// class _State extends ConsumerState<> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
