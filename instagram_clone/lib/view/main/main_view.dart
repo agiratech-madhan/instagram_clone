@@ -9,6 +9,7 @@ import '../../state/image_upload/models/file_type.dart';
 import '../components/constants/strings.dart';
 import '../components/dialogs/logout_dialog.dart';
 import '../create_new_post/create_new_post_view.dart';
+import '../tabs/home/home_view.dart';
 import '../tabs/search/search_view.dart';
 import '../tabs/user_posts/user_posts_view.dart';
 
@@ -122,9 +123,7 @@ class _MainViewState extends ConsumerState<MainView> {
           children: [
             UserPostsView(),
             SearchView(),
-            UserPostsView(),
-            // SearchView(),
-            // HomeView(),
+            HomeView(),
           ],
         ),
       ),
