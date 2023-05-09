@@ -35,6 +35,22 @@ final userPostsProvider = StreamProvider.autoDispose<Iterable<Post>>(
         .listen(
       (snapshot) {
         final documents = snapshot.docs;
+        print("userpost snapshot $snapshot");
+        // print("userpost snapshot ${snapshot}");
+        print("userpost docs ${snapshot.docs}");
+        print("userpost docs length ${snapshot.docs.length}");
+        print("userpost docs first reference ${snapshot.docs.first.reference}");
+        print(
+            "userpost docs first metadata runTimeType ${snapshot.docs.first.metadata}");
+        print("userpost docs first metadata  ${snapshot.docs.first.metadata}");
+        print("userpost metadata ${snapshot.metadata}");
+        print(
+            "userpost metadata hasPendingWrites ${snapshot.metadata.hasPendingWrites}");
+        print("userpost docChanges ${snapshot.docChanges}");
+        print("userpost docChanges  length ${snapshot.docChanges.length}");
+        print("userpost size ${snapshot.size}");
+        snapshot.docs.forEach((element) => print(element.data()));
+        // print("userpost size ${snapshot.docs.forEach((element) => print)}");
         final posts = documents
             .where(
               (doc) => !doc.metadata.hasPendingWrites,

@@ -3,6 +3,7 @@ import 'package:instagram_clone/view/components/post/post_thumbnail_view.dart';
 import 'package:instagram_clone/view/postcomments/post_comments_view.dart';
 
 import '../../../state/posts/models/post.dart';
+import '../../post_detail/post_detail_view.dart';
 
 class PostsGridView extends StatelessWidget {
   final Iterable<Post> posts;
@@ -27,22 +28,22 @@ class PostsGridView extends StatelessWidget {
         return PostThumbnailView(
           post: post,
           onTapped: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PostCommentsView(
-                  postId: post.postId,
-                ),
-              ),
-            );
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(
-            //     builder: (context) => PostDetailsView(
-            //       post: post,
+            //     builder: (context) => PostCommentsView(
+            //       postId: post.postId,
             //     ),
             //   ),
             // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PostDetailsView(
+                  post: post,
+                ),
+              ),
+            );
           },
         );
       },
