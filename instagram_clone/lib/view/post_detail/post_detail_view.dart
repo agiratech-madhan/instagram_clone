@@ -155,13 +155,9 @@ class _PostDetailsViewState extends ConsumerState<PostDetailsView> {
                 ),
                 if (postWithComments.post.allowsLikes)
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        LikesCountView(
-                          postId: postId,
-                        ),
-                      ],
+                    padding: const EdgeInsets.only(top: 8.0, left: 8),
+                    child: LikesCountView(
+                      postId: postId,
                     ),
                   ),
                 const SizedBox(

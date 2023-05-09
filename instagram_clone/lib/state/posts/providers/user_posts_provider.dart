@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:instagram_clone/main.dart';
 
 import '../../auth/provider/user_id_provier.dart';
 import '../../constants/firebase_collection_name.dart';
@@ -35,7 +36,7 @@ final userPostsProvider = StreamProvider.autoDispose<Iterable<Post>>(
         .listen(
       (snapshot) {
         final documents = snapshot.docs;
-        print("userpost snapshot $snapshot");
+        print("userpost snapshot ${snapshot}");
         // print("userpost snapshot ${snapshot}");
         print("userpost docs ${snapshot.docs}");
         print("userpost docs length ${snapshot.docs.length}");
@@ -49,8 +50,9 @@ final userPostsProvider = StreamProvider.autoDispose<Iterable<Post>>(
         print("userpost docChanges ${snapshot.docChanges}");
         print("userpost docChanges  length ${snapshot.docChanges.length}");
         print("userpost size ${snapshot.size}");
-        snapshot.docs.forEach((element) => print(element.data()));
+        // snapshot.docs.forEach((element) => print(element.data()));
         // print("userpost size ${snapshot.docs.forEach((element) => print)}");
+
         final posts = documents
             .where(
               (doc) => !doc.metadata.hasPendingWrites,
