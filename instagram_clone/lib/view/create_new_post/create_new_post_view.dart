@@ -31,7 +31,7 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
   Widget build(BuildContext context) {
     final thumbnailRequest =
         ThumbnailRequest(file: widget.fileToPost, fileType: widget.fileType);
-    final postSettings = ref.watch(PostSettingProvider);
+    final postSettings = ref.watch(postSettingProvider);
 
     final postController = useTextEditingController();
     final isPostButtonEnabled = useState(false);
@@ -113,7 +113,7 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
                 trailing: Switch(
                   value: postSettings[postSetting] ?? false,
                   onChanged: (isOn) {
-                    ref.read(PostSettingProvider.notifier).setSetting(
+                    ref.read(postSettingProvider.notifier).setSetting(
                           postSetting,
                           isOn,
                         );

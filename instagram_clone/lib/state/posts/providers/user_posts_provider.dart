@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:instagram_clone/main.dart';
 
 import '../../auth/provider/user_id_provier.dart';
 import '../../constants/firebase_collection_name.dart';

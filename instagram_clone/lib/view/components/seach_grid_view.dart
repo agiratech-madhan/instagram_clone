@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone/state/posts/providers/post_by_search_term_provider.dart';
 import 'package:instagram_clone/view/components/animations/empty_content_with_text_animation_view.dart';
-import 'package:instagram_clone/view/components/post/post_grid_view.dart';
 import 'package:instagram_clone/view/components/post/post_sliver_grid_view.dart';
-
 import 'animations/data_not_found_animation_view.dart';
 import 'animations/error_animation_view.dart';
 import 'constants/strings.dart';

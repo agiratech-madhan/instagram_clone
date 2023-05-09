@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:instagram_clone/view/components/loading/loading_screen._controller.dart';
 
 import '../constants/strings.dart';
@@ -31,6 +30,7 @@ class LoadingScreen {
     final textController = StreamController<String>();
     textController.add(text);
     final state = Overlay.of(context);
+    // ignore: unnecessary_null_comparison
     if (state == null) {
       return null;
     }
@@ -53,17 +53,17 @@ class LoadingScreen {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    CircularProgressIndicator(),
-                    SizedBox(
+                    const CircularProgressIndicator(),
+                    const SizedBox(
                       height: 10,
                     ),
                     StreamBuilder<String>(

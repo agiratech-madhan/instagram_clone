@@ -24,14 +24,11 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
 
   Future<void> loginWithGoogle() async {
     state = state.copyWithIsLoading(true);
-    print("state.isLoading${state.isLoading}");
     final result = await _authenticator.loginWithGoogle();
     final userId = _authenticator.userId;
     if (result == AuthResult.success && userId != null) {
       await saveUserInfo(userId: userId);
     }
-    print("Auth Result $result");
-    print(result == AuthResult.success && userId != null);
     state = AuthState(
       result: result,
       isLoading: false,

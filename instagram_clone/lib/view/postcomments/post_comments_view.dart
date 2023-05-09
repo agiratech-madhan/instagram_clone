@@ -86,6 +86,7 @@ class PostCommentsView extends HookConsumerWidget {
                   }
                   return RefreshIndicator(
                     onRefresh: () {
+                      // ignore: unused_result
                       ref.refresh(
                         postCommentsProvider(
                           request.value,

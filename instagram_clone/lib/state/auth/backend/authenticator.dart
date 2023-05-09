@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -32,10 +30,9 @@ class Authenticator {
     }
     final oauthCredential = FacebookAuthProvider.credential(token);
     try {
-      final r = await FirebaseAuth.instance.signInWithCredential(
+      await FirebaseAuth.instance.signInWithCredential(
         oauthCredential,
       );
-      print(r.user?.displayName);
       return AuthResult.success;
     } on FirebaseAuthException catch (e) {
       final email = e.email;
@@ -66,7 +63,6 @@ class Authenticator {
     // }
     final GoogleSignIn googleSignIn = GoogleSignIn();
     final signInAccount = await googleSignIn.signIn();
-    print('signInAccount' '$signInAccount');
     if (signInAccount == null) {
       return AuthResult.aborted;
     }
@@ -77,9 +73,7 @@ class Authenticator {
     );
 
     try {
-      final UserCredential uc =
-          await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-      print(uc.user?.displayName);
+      await FirebaseAuth.instance.signInWithCredential(oauthCredential);
 
       return AuthResult.success;
     } catch (e) {

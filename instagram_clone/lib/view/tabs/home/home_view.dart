@@ -16,8 +16,9 @@ class HomeView extends ConsumerWidget {
     final posts = ref.watch(allPostsProvider);
     return RefreshIndicator(
       onRefresh: () {
-        final value = ref.refresh(allPostsProvider);
-        return Future.delayed(Duration(seconds: 1));
+        // ignore: unused_result
+        ref.refresh(allPostsProvider);
+        return Future.delayed(const Duration(seconds: 1));
       },
       child: posts.when(
         data: (posts) {

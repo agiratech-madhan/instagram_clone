@@ -6,6 +6,7 @@ import 'package:instagram_clone/view/login/login_view_sign_up_links.dart';
 
 import '../../state/auth/provider/auth_state_provider.dart';
 import '../../state/provider/is_loading_provider.dart';
+// ignore: unused_import
 import '../components/loading/loading_screen.dart';
 import '../constants/app_color.dart';
 import 'face_book_button.dart';
@@ -17,7 +18,7 @@ class LoginView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(isLoadingProvider, (_, isLoading) {
       if (isLoading) {
-        CircularProgressIndicator();
+        const CircularProgressIndicator();
         // LoadingScreen.instance().show(context: context);
       } else {
         // return LoadingScreen.instance().hide();

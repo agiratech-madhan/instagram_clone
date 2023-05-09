@@ -1,3 +1,5 @@
+// ignore_for_file: unused_result
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -42,7 +44,7 @@ class _MainViewState extends ConsumerState<MainView> {
                   return;
                 }
 
-                ref.refresh(PostSettingProvider);
+                ref.refresh(postSettingProvider);
                 // go to the screen to create a new post
                 if (!mounted) {
                   return;
@@ -66,7 +68,7 @@ class _MainViewState extends ConsumerState<MainView> {
                   return;
                 }
 
-                ref.refresh(PostSettingProvider);
+                ref.refresh(postSettingProvider);
                 // go to the screen to create a new post
                 if (!mounted) {
                   return;

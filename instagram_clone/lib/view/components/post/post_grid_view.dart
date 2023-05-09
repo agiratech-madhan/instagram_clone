@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/view/components/post/post_thumbnail_view.dart';
-import 'package:instagram_clone/view/postcomments/post_comments_view.dart';
 
 import '../../../state/posts/models/post.dart';
 import '../../post_detail/post_detail_view.dart';
