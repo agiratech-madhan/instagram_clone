@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone/state/auth/provider/is_logged_in_provider.dart';
 import 'package:instagram_clone/state/provider/is_loading_provider.dart';
+import 'package:instagram_clone/view/components/loading/loading_screen.dart';
 import 'package:instagram_clone/view/login/login_view.dart';
 import 'package:instagram_clone/view/main/main_view.dart';
 import 'firebase_options.dart';
@@ -24,15 +25,6 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final isLoggedIn = ref.watch(isLoggedInProvider);
-
-    // ref.listen(isLoadingProvider, (_, isLoading) {
-    //   if (isLoading) {
-    //     return LoadingScreen.instance().show(context: context);
-    //   } else {
-    //     return LoadingScreen.instance().hide();
-    //   }
-    // });
     ref.listen<bool>(
       isLoadingProvider,
       (_, isLoading) {
@@ -59,7 +51,13 @@ class MyApp extends HookConsumerWidget {
             indicatorColor: Colors.blueGrey),
         themeMode: ThemeMode.dark,
         home: HookConsumer(builder: ((__, ref, child) {
-          // return Text("data");
+          ref.listen(isLoadingProvider, (_, isLoading) {
+            if (isLoading) {
+              return LoadingScreen.instance().show(context: __);
+            } else {
+              return LoadingScreen.instance().hide();
+            }
+          });
           final isLoggedIn = ref.watch(isLoggedInProvider);
           if (isLoggedIn) {
             return const MainView();
