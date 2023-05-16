@@ -16,6 +16,7 @@ final postCommentsProvider = StreamProvider.family
 ) {
   final controller = StreamController<Iterable<Comment>>();
 
+  ///listening the comments as streams
   final sub = FirebaseFirestore.instance
       .collection(FirebaseCollectionName.comments)
       .where(

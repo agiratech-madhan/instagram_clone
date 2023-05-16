@@ -55,12 +55,6 @@ class Authenticator {
   }
 
   Future<AuthResult> loginWithGoogle() async {
-    // final googleUser = await GoogleSignIn().signIn();
-    // final googleAuth = await googleUser?.authentication;
-    // final token = googleAuth?.idToken;
-    // if (token == null) {
-    //   return AuthResult.aborted;
-    // }
     final GoogleSignIn googleSignIn = GoogleSignIn();
     final signInAccount = await googleSignIn.signIn();
     if (signInAccount == null) {
@@ -79,6 +73,5 @@ class Authenticator {
     } catch (e) {
       return AuthResult.failure;
     }
-    // return AuthResult.failure;
   }
 }

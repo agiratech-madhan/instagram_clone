@@ -23,6 +23,7 @@ class SendCommentNotifier extends StateNotifier<LoadingState> {
       comment: comment,
     );
     try {
+      ///add comments to comments collection path
       await FirebaseFirestore.instance
           .collection(FirebaseCollectionName.comments)
           .add(payload);

@@ -20,6 +20,7 @@ class DeletePostStateNotifier extends StateNotifier<LoadingState> {
     try {
       isLoading = true;
 
+      ///deleting the file in firebaseStorage
       await FirebaseStorage.instance
           .ref()
           .child(post.userId)
@@ -34,10 +35,13 @@ class DeletePostStateNotifier extends StateNotifier<LoadingState> {
           .child(post.originalFileStorageId)
           .delete();
 
+      ///delete the comments on specific postId
       await _deleteAllDocuments(
         inCollection: FirebaseCollectionName.comments,
         postId: post.postId,
       );
+
+      ///delete the likes on specific postId
 
       await _deleteAllDocuments(
         inCollection: FirebaseCollectionName.likes,
@@ -53,6 +57,7 @@ class DeletePostStateNotifier extends StateNotifier<LoadingState> {
           .limit(1)
           .get();
       for (final post in postInCollection.docs) {
+        ///delete  document reference in firestore
         await post.reference.delete();
       }
 
@@ -74,6 +79,7 @@ class DeletePostStateNotifier extends StateNotifier<LoadingState> {
         seconds: 20,
       ),
       (transaction) async {
+        ///delete all the data based on Post ID
         final query = await FirebaseFirestore.instance
             .collection(inCollection)
             .where(

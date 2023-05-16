@@ -14,6 +14,8 @@ class DeleteCommentStateNotifier extends StateNotifier<LoadingState> {
   }) async {
     try {
       isLoading = true;
+
+      /// getting the data from firestore based on document ID in Comments Collection Path
       final query = FirebaseFirestore.instance
           .collection(FirebaseCollectionName.comments)
           .where(
@@ -25,6 +27,7 @@ class DeleteCommentStateNotifier extends StateNotifier<LoadingState> {
 
       await query.then(
         (query) async {
+          ///remove all documetns in specific document id
           for (final doc in query.docs) {
             await doc.reference.delete();
           }

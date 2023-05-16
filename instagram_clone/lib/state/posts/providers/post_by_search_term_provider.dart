@@ -12,6 +12,7 @@ final postBysearchTermprovider =
     StreamProviderFamily<Iterable<Post>, SearchTerm>((ref, searchTerm) {
   final controller = StreamController<Iterable<Post>>();
 
+  ///posts based on  search comment
   final sub = FirebaseFirestore.instance
       .collection(FirebaseCollectionName.posts)
       .orderBy(FirebaseFieldName.createdAt, descending: true)

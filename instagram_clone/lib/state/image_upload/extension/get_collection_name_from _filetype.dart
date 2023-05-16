@@ -3,6 +3,7 @@
 import '../models/file_type.dart';
 
 extension CollectionName on FileType {
+  ///get the File Type
   String get collectionName {
     switch (this) {
       case FileType.image:

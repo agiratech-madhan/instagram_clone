@@ -3,6 +3,7 @@ import '../model/comment.dart';
 import '../model/post_coment_request.dart';
 
 extension Sorting on Iterable<Comment> {
+  ///sorting based on DateTime
   Iterable<Comment> applySortingFrom(RequestForPostAndComments request) {
     if (request.sortByCreatedAt) {
       final sortedDocuments = toList()

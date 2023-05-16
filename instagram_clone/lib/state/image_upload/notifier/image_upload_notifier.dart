@@ -41,7 +41,6 @@ class ImageUploadNotifier extends StateNotifier<LoadingState> {
           isLoading = false;
           return false;
         }
-        // // create thumbnail
         final thumbnail = img.copyResize(
           fileAsImage,
           width: Constants.imageThumbnailWidth,
@@ -66,12 +65,9 @@ class ImageUploadNotifier extends StateNotifier<LoadingState> {
     }
     final thumbnailAspectRatio = await thumbnailUint8List.getAspectRatio();
 
-    // calculate references
-
     final fileName = const Uuid().v4();
 
-    // create references to the thumbnail and the image itself
-
+    ///Reference for Fireabase Storage
     final thumbnailRef = FirebaseStorage.instance
         .ref()
         .child(userId)
@@ -84,6 +80,8 @@ class ImageUploadNotifier extends StateNotifier<LoadingState> {
         .child(fileType.collectionName)
         .child(fileName);
     try {
+      // Storing the files in firebase Storage
+
       final thumbnailUploadTask =
           await thumbnailRef.putData(thumbnailUint8List);
 
@@ -91,6 +89,8 @@ class ImageUploadNotifier extends StateNotifier<LoadingState> {
 
       final originalFileUploadTask = await originalFileRef.putFile(file);
       final originalFileStorageId = originalFileUploadTask.ref.name;
+
+      ///Payload for Post Information
       final postPayload = PostPayload(
         userId: userId,
         message: message,
@@ -103,6 +103,8 @@ class ImageUploadNotifier extends StateNotifier<LoadingState> {
         thumbnailStorageId: thumbnailStorageId,
         originalFileStorageId: originalFileStorageId,
       );
+
+      /// Add  data to the FireStore
       await FirebaseFirestore.instance
           .collection(FirebaseCollectionName.posts)
           .add(postPayload);
