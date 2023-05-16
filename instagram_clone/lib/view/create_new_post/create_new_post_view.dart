@@ -32,7 +32,6 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
     final thumbnailRequest =
         ThumbnailRequest(file: widget.fileToPost, fileType: widget.fileType);
     final postSettings = ref.watch(postSettingProvider);
-
     final postController = useTextEditingController();
     final isPostButtonEnabled = useState(false);
     useEffect(

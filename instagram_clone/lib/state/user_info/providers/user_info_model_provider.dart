@@ -12,7 +12,7 @@ final userInfoModelProvider =
     StreamProvider.family.autoDispose<UserInfoModel, UserId>(
   (ref, UserId userId) {
     final controller = StreamController<UserInfoModel>();
-
+///sam
     final sub = FirebaseFirestore.instance
         .collection(
           FirebaseCollectionName.users,
