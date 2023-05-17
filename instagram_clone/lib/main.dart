@@ -25,19 +25,19 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<bool>(
-      isLoadingProvider,
-      (_, isLoading) {
-        if (isLoading) {
-          // return LoadingScreen.instance().show(
-          //   context: context,
-          // );
-          const CircularProgressIndicator();
-        } else {
-          // return LoadingScreen.instance().hide();
-        }
-      },
-    );
+    // ref.listen<bool>(
+    //   isLoadingProvider,
+    //   (_, isLoading) {
+    //     if (isLoading) {
+    //       // return LoadingScreen.instance().show(
+    //       //   context: context,
+    //       // );
+    //       const CircularProgressIndicator();
+    //     } else {
+    //       // return LoadingScreen.instance().hide();
+    //     }
+    //   },
+    // );
     return MaterialApp(
         // title: 'Flutter De mo',
         theme: ThemeData(
